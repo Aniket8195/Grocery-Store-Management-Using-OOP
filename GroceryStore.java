@@ -7,7 +7,7 @@ public class GroceryStore {
         int choice;
         GroceryStoreImpl store = new GroceryStoreImpl();
 
-        do{
+        do {
             System.out.println("Welcome to the Grocery Store!");
             System.out.println("Are you a customer or an owner?");
             System.out.println("1. Customer");
@@ -15,7 +15,7 @@ public class GroceryStore {
             System.out.println("3.Exit");
             choice = input.nextInt();
 
-            switch(choice) {
+            switch (choice) {
                 case 1:
                     CustomerImpl customer = new CustomerImpl();
                     customer.manage(store);
@@ -26,10 +26,11 @@ public class GroceryStore {
                     break;
 
             }
-        }while(choice!=3);
+        } while (choice != 3);
         input.close();
     }
 }
+
 class GroceryStoreImpl {
     public List<Product> inventory;
 
@@ -65,6 +66,7 @@ class GroceryStoreImpl {
         System.out.println("****************");
         System.out.println("Total: RS" + totalCost);
     }
+
     public Product getProduct(int productId) {
         for (int i = 0; i < inventory.size(); i++) {
             if (inventory.get(i).getId() == productId) {
@@ -75,7 +77,7 @@ class GroceryStoreImpl {
         return null;
     }
 
-    public void updateProduct(int remainStock,int id) {
+    public void updateProduct(int remainStock, int id) {
         for (int i = 0; i < inventory.size(); i++) {
             if (inventory.get(i).getId() == id) {
                 inventory.get(i).setStock(remainStock);
@@ -84,14 +86,15 @@ class GroceryStoreImpl {
     }
 
 }
+
 class CustomerImpl {
 
     public void manage(GroceryStoreImpl store) {
         Scanner input = new Scanner(System.in);
         int choose;
         List<Product> cart = new ArrayList<>();
-        double tprice=0;
-         if (store.inventory.isEmpty()) {
+        double tprice = 0;
+        if (store.inventory.isEmpty()) {
             System.out.println("Sorry, the inventory is empty. Please try again later.");
             return;
         }
@@ -100,7 +103,7 @@ class CustomerImpl {
             System.out.println(product.getId() + ". " + product.getName() + " - RS " + product.getPrice());
         }
 
-        do{
+        do {
             System.out.println("Enter the ID of the product you want to buy:");
             int productId = input.nextInt();
 
@@ -117,21 +120,22 @@ class CustomerImpl {
                 } else {
                     cart.add(product);
                     double totalPrice = quantity * product.getPrice();
-                    int remainStock=product.getStock() - quantity;
-                    store.updateProduct(remainStock,product.getId());
-                    tprice=tprice+totalPrice;
+                    int remainStock = product.getStock() - quantity;
+                    store.updateProduct(remainStock, product.getId());
+                    tprice = tprice + totalPrice;
 
                 }
             }
             System.out.println("Want to generate receipt (1)OR Continue(0):");
-            choose=input.nextInt();
-        }while(choose!=1);
+            choose = input.nextInt();
+        } while (choose != 1);
 
         store.checkout(cart);
 
     }
 
 }
+
 class OwnerImpl {
 
     public void manage(GroceryStoreImpl store) {
@@ -148,7 +152,7 @@ class OwnerImpl {
         System.out.println("2. Remove product");
         int choice = input.nextInt();
 
-        switch(choice) {
+        switch (choice) {
             case 1:
 
                 System.out.println("Enter the product ID:");
@@ -162,7 +166,7 @@ class OwnerImpl {
                 int stock = input.nextInt();
 
 
-                Product product = new Product(id, name, price,stock);
+                Product product = new Product(id, name, price, stock);
                 store.addProduct(product);
                 System.out.println("Product added successfully.");
                 break;
@@ -178,10 +182,10 @@ class OwnerImpl {
         }
 
 
-
     }
 
 }
+
 class Product {
     private int id;
     private String name;
@@ -228,5 +232,4 @@ class Product {
     }
 
 }
-
 
