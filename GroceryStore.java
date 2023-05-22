@@ -57,14 +57,29 @@ class GroceryStoreImpl {
             Product product = cart.get(i);
             totalCost += product.getPrice();
         }
-        System.out.println("Here is your receipt:");
-        System.out.println("\n");
+        System.out.println("     Here is your receipt:   ");
+        System.out.println("---------------------------------");
+        System.out.println("           PCMC MART    ");
+        System.out.println("---------------------------------");
+        System.out.println("     No.0023 Chinchwad Road,PCMC                ");
+        System.out.println("     Maharashtra,India                  ");
+        System.out.println("     www.pcmcgroc.com                   ");
+        System.out.println("     +917058964345                      ");
+        System.out.println("---------------------------------");
+        System.out.println("Item Name                 Price");
+        System.out.println("---------------------------------");
         for (int i = 0, cartSize = cart.size(); i < cartSize; i++) {
             Product product = cart.get(i);
-            System.out.println(product.getName() + " - RS" + product.getPrice());
+            System.out.println(product.getName() + "                      Rs." + product.getPrice());
         }
-        System.out.println("****************");
-        System.out.println("Total: RS" + totalCost);
+        System.out.println("---------------------------------");
+        System.out.println("Total: Rs." + totalCost);
+        System.out.println("---------------------------------");
+        
+        
+        System.out.println("*********************************");
+        System.out.println("THANK YOU COME AGAIN");
+        System.out.println("*********************************");
     }
 
     public Product getProduct(int productId) {
@@ -100,7 +115,7 @@ class CustomerImpl {
         }
         System.out.println("Available products:");
         for (Product product : store.inventory) {
-            System.out.println(product.getId() + ". " + product.getName() + " - RS " + product.getPrice());
+            System.out.println(product.getId() + ". " + product.getName() + " - Rs. " + product.getPrice());
         }
 
         do {
@@ -126,7 +141,7 @@ class CustomerImpl {
 
                 }
             }
-            System.out.println("Want to generate receipt (1)OR Continue(0):");
+            System.out.println("Want to generate receipt (1) OR Continue (0):");
             choose = input.nextInt();
         } while (choose != 1);
 
