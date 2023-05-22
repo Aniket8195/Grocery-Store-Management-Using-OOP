@@ -78,7 +78,7 @@ class GroceryStoreImpl {
         
         
         System.out.println("*********************************");
-        System.out.println("THANK YOU COME AGAIN");
+        System.out.println("THANK YOU COME AGAIN 😊");
         System.out.println("*********************************");
     }
 
