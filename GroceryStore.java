@@ -171,7 +171,10 @@ class OwnerImpl {
                 System.out.println("Product added successfully.");
                 break;
             case 2:
-
+                 if (store.inventory.isEmpty()) {
+                     System.out.println(" the inventory is empty. ");
+                     return;
+                 }
                 System.out.println("Enter the ID of the product to remove:");
                 int productId = input.nextInt();
 
